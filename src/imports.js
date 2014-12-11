@@ -4,12 +4,14 @@ var java = require('java');
 var path = require('path');
 var resolve = path.resolve;
 var classPaths = require('./classPaths');
-var seleniumBinaries = require('selenium-binaries');
+var seleniumBinaries = {}; // require('selenium-binaries');
 var seleniumJar = seleniumBinaries.seleniumserver;
 var chromeDriverPath = seleniumBinaries.chromedriver;
 var ieDriverPath = seleniumBinaries.iedriver;
 
-java.classpath.push(seleniumJar);
+if(seleniumJar) {
+  java.classpath.push(seleniumJar);
+}
 java.classpath.push(
   resolve(__dirname, './java/webdriversynchelpers/dist/webdriversynchelpers.jar')
 );
